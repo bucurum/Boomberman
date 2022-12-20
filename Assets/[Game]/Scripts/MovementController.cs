@@ -4,7 +4,7 @@ public class MovementController : MonoBehaviour
 {
     public Rigidbody2D rb {get; private set;}
     private Vector2 direction = Vector2.down;
-    [SerializeField] float speed = 5f;
+    public float speed = 5f;
     
     public KeyCode inputUp = KeyCode.W;
     public KeyCode inputDown = KeyCode.S;

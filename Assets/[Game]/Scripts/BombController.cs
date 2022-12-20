@@ -10,13 +10,14 @@ public class BombController : MonoBehaviour
     public int bombAmount = 2;
     public KeyCode inputKey = KeyCode.Space;
     private int bombsRemaning;
+    [SerializeField] bool isPlaced = false;
 
     [Header("Explosion")]
     
     [SerializeField] Explosion explosionPrefab;
     [SerializeField] LayerMask explosionLayerMask;
     [SerializeField] float explosionDuration = 1f;
-    [SerializeField] int explosionRadius = 1;
+    public int explosionRadius = 1;
 
     [Header("Destructible")]
     [SerializeField] Tilemap destructibleTiles;
@@ -43,8 +44,11 @@ public class BombController : MonoBehaviour
 
         GameObject bomb = Instantiate(bombPrefab, position, Quaternion.identity);
         bombsRemaning--;
+        isPlaced = true;
 
         yield return new WaitForSeconds(bombFuseTime);
+
+        isPlaced = false;
 
         position = bomb.transform.position;
         position.x = Mathf.Round(position.x);
@@ -61,6 +65,7 @@ public class BombController : MonoBehaviour
 
         Destroy(bomb);
         bombsRemaning++;
+        
     }
 
     void OnTriggerExit2D(Collider2D other)
@@ -103,6 +108,12 @@ public class BombController : MonoBehaviour
             Instantiate(destructiblePrefab, position, Quaternion.identity);
             destructibleTiles.SetTile(cell, null);
         }
+    }
+
+    public void AddBomb()
+    {
+        bombAmount++;
+        bombsRemaning++;
     }
 
 }
