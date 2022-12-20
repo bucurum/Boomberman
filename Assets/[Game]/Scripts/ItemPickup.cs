@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ItemPickup : MonoBehaviour
@@ -14,6 +12,7 @@ public class ItemPickup : MonoBehaviour
 
     private void OnItemPickup(GameObject player)
     {
+        //check which item the player picks up and change the values after picking up destroy the item
         switch (type)
         {
             case ItemType.BlastRadius:
@@ -32,7 +31,7 @@ public class ItemPickup : MonoBehaviour
         Destroy(gameObject);
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D other) //if the item collide with collide with tag which is player execute OnItemPickup function
     {
         if (other.CompareTag("Player"))
         {

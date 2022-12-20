@@ -6,14 +6,14 @@ public class Explosion : MonoBehaviour
     public AnimatedSpriteRenderer middle;
     public AnimatedSpriteRenderer end;
 
-    public void SetActiveRenderer(AnimatedSpriteRenderer renderer)
+    public void SetActiveRenderer(AnimatedSpriteRenderer renderer) // there is 3 diffrent explosions sprite so set the expolisons which one is which
     {
         start.enabled = renderer == start;
         middle.enabled = renderer == middle;
         end.enabled = renderer == end; 
     }
     
-    public void SetDirection(Vector2 direction)
+    public void SetDirection(Vector2 direction) // set expolison angle
     {
         float angle = Mathf.Atan2(direction.y, direction.x);
 

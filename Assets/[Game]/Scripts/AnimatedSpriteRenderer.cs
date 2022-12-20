@@ -33,7 +33,7 @@ public class AnimatedSpriteRenderer : MonoBehaviour
         InvokeRepeating(nameof(NextFrame), animationTime, animationTime);
     }
 
-private void NextFrame()
+    private void NextFrame()
     {
         animationFrame++;
 

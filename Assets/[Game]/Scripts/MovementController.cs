@@ -57,7 +57,7 @@ public class MovementController : MonoBehaviour
     {
         direction = newDirection;
 
-        spriteRendererUp.enabled = spriteRenderer == spriteRendererUp;
+        spriteRendererUp.enabled = spriteRenderer == spriteRendererUp; // if sprite renderer equal to sprite renderer up enable sprite renderer up
         spriteRendererDown.enabled = spriteRenderer == spriteRendererDown; 
         spriteRendererLeft.enabled = spriteRenderer == spriteRendererLeft; 
         spriteRendererRight.enabled = spriteRenderer == spriteRendererRight; 
@@ -65,8 +65,27 @@ public class MovementController : MonoBehaviour
         activeSpriteRenderer = spriteRenderer;
         activeSpriteRenderer.idle = direction == Vector2.zero;
 
-
     }
 
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Explosion"))
+        {
+            Death();    
+        }
+    }
+
+    private void Death()
+    {
+        enabled = false;
+        GetComponent<BombController>().enabled = false;
+        
+        spriteRendererDown.enabled = false;
+        spriteRendererUp.enabled = false;
+        spriteRendererLeft.enabled = false;
+        spriteRendererRight.enabled = false;
+
+    }
+    /* 0217525a */
 
 }

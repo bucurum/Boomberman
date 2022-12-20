@@ -13,7 +13,7 @@ public class Destructible : MonoBehaviour
         Destroy(gameObject, destructionTime);
     }
 
-    void OnDestroy()
+    void OnDestroy() // spawn item by change when player destroyed a brick
     {
         if (spawnableItems.Length > 0 && Random.value < itemSpawnChance)
         {

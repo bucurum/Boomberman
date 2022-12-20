@@ -10,7 +10,6 @@ public class BombController : MonoBehaviour
     public int bombAmount = 2;
     public KeyCode inputKey = KeyCode.Space;
     private int bombsRemaning;
-    [SerializeField] bool isPlaced = false;
 
     [Header("Explosion")]
     
@@ -39,7 +38,7 @@ public class BombController : MonoBehaviour
     private IEnumerator PlaceBomb()
     {
         Vector2 position = transform.position;
-        position.x = Mathf.Round(position.x);
+        position.x = Mathf.Round(position.x); // mathf round is make the float numbers to int numbers so when we tyr to place bomb it will automaticly placed center of a tile
         position.y = Mathf.Round(position.y);
 
         GameObject bomb = Instantiate(bombPrefab, position, Quaternion.identity);
@@ -47,10 +46,8 @@ public class BombController : MonoBehaviour
 
         yield return new WaitForSeconds(bombFuseTime);
 
-        isPlaced = false;
-
         position = bomb.transform.position;
-        position.x = Mathf.Round(position.x);
+        position.x = Mathf.Round(position.x); 
         position.y = Mathf.Round(position.y);
         
         Explosion explosion = Instantiate(explosionPrefab, position, Quaternion.identity);
@@ -94,10 +91,10 @@ public class BombController : MonoBehaviour
         explosion.SetDirection(direction);
         explosion.DestroyAfter(explosionDuration);
 
-        Explode(position, direction , length - 1 );
+        Explode(position, direction , length - 1 ); //make this function recursive it will execute explosion radius time. (it start 1, when you pick up blast radious item explosion radius increase 1 so it will execute 2 time ect.) 
     }
 
-    private void ClearDestructible(Vector2 position)
+    private void ClearDestructible(Vector2 position) 
     {
         Vector3Int cell = destructibleTiles.WorldToCell(position);
         TileBase tile  = destructibleTiles.GetTile(cell);
