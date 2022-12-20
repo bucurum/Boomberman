@@ -44,7 +44,6 @@ public class BombController : MonoBehaviour
 
         GameObject bomb = Instantiate(bombPrefab, position, Quaternion.identity);
         bombsRemaning--;
-        isPlaced = true;
 
         yield return new WaitForSeconds(bombFuseTime);
 
