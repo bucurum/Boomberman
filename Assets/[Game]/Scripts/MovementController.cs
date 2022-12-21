@@ -15,7 +15,9 @@ public class MovementController : MonoBehaviour
     public AnimatedSpriteRenderer spriteRendererDown;
     public AnimatedSpriteRenderer spriteRendererLeft;
     public AnimatedSpriteRenderer spriteRendererRight;
+    public AnimatedSpriteRenderer spriteRendererDeath;
     private AnimatedSpriteRenderer activeSpriteRenderer;
+    
 
     void Awake()
     {
@@ -84,8 +86,14 @@ public class MovementController : MonoBehaviour
         spriteRendererUp.enabled = false;
         spriteRendererLeft.enabled = false;
         spriteRendererRight.enabled = false;
+        spriteRendererDeath.enabled = true;
 
+        Invoke(nameof(OnDeathSequanceEnded), 1.25f);
     }
     /* 0217525a */
 
+    private void OnDeathSequanceEnded()
+    {
+        gameObject.SetActive(false);
+    }
 }
